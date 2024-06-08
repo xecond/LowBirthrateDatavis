@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Low Birthrate Datavis</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://unpkg.com/d3-tip@0.9.1/d3-tip.min.js"></script>
+    <script src="https://d3js.org/topojson.v3.min.js"></script>
+</head>
+<body>
+
+    <header>
+        <h2><a href="#">대한민국 저출생 현상 관련 데이터 시각화</a></h2>
+    </header>
+
+    <div class="tab-container">
+        
+        <div class="tab-link-container">
+            <ul class="tabs">
+                <li class="tab-link current" data-tab="tab-1">합계출산율</li>
+                <li class="tab-link" data-tab="tab-2">인구</li>
+                <li class="tab-link" data-tab="tab-3">가정</li>
+                <li class="tab-link" data-tab="tab-4">교육</li>
+                <li class="tab-link" data-tab="tab-5">부동산</li>
+                <li class="tab-link" data-tab="tab-6">물가</li>
+                <li class="tab-link" data-tab="tab-7">OECD 지표</li>
+                <li class="tab-link supplement" data-tab="tab-8">*관련 예산</li>
+            </ul>
+        </div>
+        
+        <div class="tab-content-container">
+
+            <div id="tab-1" class="tab-content current">
+                <div class="tab-content-header">
+                    <h2 class="chart-name">합계출산율</h2>
+                </div>
+                <div id="birthrate-barchart-container"></div>
+                
+            </div>
+
+            <div id="tab-2" class="tab-content">
+                <div class="tab-content-header">
+                    <h2 class="chart-name">지역별 인구</h2>
+                    <div id="yearLabel">연도: <span id="year">2023</span></div>
+                    <input type="range" id="yearSlider" min="0" max="21" step="1" value="21" oninput="updateYear(this.value)">
+                </div>
+                <div id="population-map-container">
+                    <div id="population-map"></div>
+                    <div id="populationLegend" class="legend"></div>
+                </div>
+            </div>
+
+            <div id="tab-3" class="tab-content">
+                <div class="tab-content-headers">
+                    <div class="tab-content-header-left">
+                        <h2 class="chart-name">평균 가구원수 비율</h2>
+                    </div>
+                    <div class="tab-content-header">
+                        <h2 class="chart-name">조혼인율과 조출생률</h2>
+                        <label for="region-select" id="region-select-label">지역 선택 :</label>
+                        <select id="region-select"></select>
+                    </div>
+                </div>
+                <div class="chart-containers">
+                    <div id="people-per-household-chart-container"></div>
+                    <div id="marriage-chart-container"></div>
+                </div>
+            </div>
+
+            <div id="tab-4" class="tab-content">
+                <div class="tab-content-headers">
+                    <div class="tab-content-header-left">
+                        <h2 class="chart-name">평균 사교육비</h2>
+                    </div>
+                    <div class="tab-content-header">
+                        <h2 class="chart-name">학교 성적과 사교육비</h2>
+                    </div>
+                </div>
+                <div class="chart-containers">
+                    <div id="education-region-chart-container"></div>
+                    <div id="education-grade-chart-container"></div>
+                </div>
+            </div>
+
+            <div id="tab-5" class="tab-content">
+                <div class="tab-content-header">
+                    <h2 class="chart-name">지역별 주택 평균 매매가격과 출생건수</h2>
+                    <button class="back">❮</button>
+                    <div id="house-year">2023</div>
+                    <button class="next">❯</button>
+                    <div id="house-label-container">
+                        <div id="green-square"></div><div>주택 평균 매매가격 (천만원)</div>
+                        <div id="black-square"></div><div>출생건수 (천명)</div>
+                    </div>
+                </div>
+                <div id="house-price-chart-container"></div>
+            </div>
+            
+            <div id="tab-6" class="tab-content">
+                <div class="tab-content-header">
+                    <h2 class="chart-name">소비자물가상승률</h2>
+                </div>
+                <div id="inflation-chart-container"></div>
+            </div>
+
+            <div id="tab-7" class="tab-content">
+                <div class="tab-content-header">
+                    <h2 class="chart-name">World Birthrate Map and Barchart</h2>
+                </div>
+                <div class="chart-containers">
+                    <div id="world-birthrate-map-container" class="world-birthrate"></div>
+                    <div id="world-birthrate-chart-container" class="world-birthrate"></div>
+                </div>
+
+                <div class="tab-content-headers">
+                    <div class="tab-content-header-left">
+                        <h2 class="chart-name">Employment over age</h2>
+                    </div>
+                    <div class="tab-content-header">
+                        <h2 class="chart-name">Work Hours Difference and Birthrate by Country</h2>
+                    </div>
+                </div>
+                <div class="chart-containers">
+                    <div id="world-employment-chart-container"></div>
+                    <div id="world-workinghour-chart-container"></div>
+                </div>
+
+                <div class="tab-content-header">
+                    <h2 class="chart-name">Parental Leave Data</h2>
+                </div>
+                <div class="chart-grid">
+                    <div id="chart1"></div>
+                    <div id="chart2"></div>
+                    <div id="chart3"></div>
+                    <div id="chart4"></div>
+                </div>
+                    
+                </div>
+            </div>
+
+            <div id="tab-8" class="tab-content">
+                <div class="tab-content-header">
+                    <h2 class="chart-name">제4차 기본계획에 따른 저출산 예산 현황</h2>
+                    <div>[총 액 : 43조 9003억, 단위 : 억원, 현황년도 : 2021년도]</div>
+                </div>
+                <div class="chart-containers">
+                    <div class="policy-chart-container">
+                        <svg id="policyChart"></svg>
+                    </div>
+                    <div class="policy-legend-container">
+                        <ul id="policyList"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/population.js"></script>
+    <script src="js/birthrate.js"></script>
+    <script src="js/avg_house_selling_price.js"></script>
+    <script src="js/members.js"></script>
+    <script src="js/marriage_rate.js"></script>
+    <script src="js/privateEducation_vs_grade.js"></script>
+    <script src="js/privateEducation_vs_region.js"></script>
+    <script src="js/inflation_rate.js"></script>
+    <script src="js/birthrate_map.js"></script>
+    <script src="js/employment.js"></script>
+    <script src="js/workinghours.js"></script>
+    <script src="js/parental_leave.js"></script>
+    <script src="js/policies.js"></script>
+</body>
+</html>
