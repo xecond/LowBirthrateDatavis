@@ -1,7 +1,7 @@
 
 
 // Load the CSV data
-d3.csv("/data/InflationRate.csv").then(data => {
+d3.csv("data/InflationRate.csv").then(data => {
     showLineGraph_inflation(data);
 }).catch(error => {
     console.error("Error loading data:", error);

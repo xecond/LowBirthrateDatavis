@@ -1,6 +1,6 @@
 
 
-d3.csv("/data/privateEducationVSregion.csv").then(data => {
+d3.csv("data/privateEducationVSregion.csv").then(data => {
     showStackedBarChart(data);
 }).catch(error => {
     console.error("Error loading data:", error);
