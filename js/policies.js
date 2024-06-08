@@ -1,4 +1,4 @@
-d3.csv('data/birthrate_policies.csv').then(function(data) {
+d3.csv('./data/birthrate_policies.csv').then(function(data) {
     data.forEach(d => {
         d.value = +d.value;
     });

@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', async function() {
         .style("border-radius", "3px")
         .style("font-size", "12px");
 
-    const data = await d3.csv("data/employment.csv");
-    const birthrateData = await d3.csv("data/birthrate_employment.csv");
+    const data = await d3.csv("./data/employment.csv");
+    const birthrateData = await d3.csv("./data/birthrate_employment.csv");
 
     const keys = data.columns.slice(1);
     let originalData = [...data];  // Store original data for reset

@@ -6,8 +6,8 @@ let selectedCountry = null;
 
 // Load the data.
 Promise.all([
-  d3.json("data/countries-50m.json"),
-  d3.csv("data/birthrate_map.csv", d => d.birthrate === "-" ? null : ({name: d.name, birthrate: +d.birthrate}))
+  d3.json("./data/countries-50m.json"),
+  d3.csv("./data/birthrate_map.csv", d => d.birthrate === "-" ? null : ({name: d.name, birthrate: +d.birthrate}))
 ]).then(([world, birthrateData]) => {
 
   // Specify the chart’s dimensions.

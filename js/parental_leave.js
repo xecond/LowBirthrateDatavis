@@ -171,7 +171,7 @@ function createBarLineChart(data, xKey, yKey, yKeyLabel, divId) {
 }
 
 // Load the data
-d3.csv("data/parental_leave_with_birth_rate.csv").then(data => {
+d3.csv("./data/parental_leave_with_birth_rate.csv").then(data => {
     data.forEach(d => {
         d["Length of maternity leave"] = +d["Length of maternity leave"];
         d["Length of parental leave with job protection available to mothers"] = +d["Length of parental leave with job protection available to mothers"];

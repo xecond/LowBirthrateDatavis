@@ -1,5 +1,5 @@
 // Load and parse the CSV file
-d3.csv("data/members.csv").then(data => {
+d3.csv("./data/members.csv").then(data => {
     // Set dimensions of the graph
     const margin = { top: 20, right: 60, bottom: 100, left: 80 };
     const width = 640 - margin.left - margin.right;

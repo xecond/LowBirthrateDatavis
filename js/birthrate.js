@@ -5,7 +5,7 @@
 
 
 // Load and parse the CSV file
-d3.csv("data/birthrate.csv").then(data => {
+d3.csv("./data/birthrate.csv").then(data => {
     // Set up SVG canvas
     const margin = { top: 20, right: 30, bottom: 30, left: 40 };
     const width = 1100 - margin.left - margin.right;

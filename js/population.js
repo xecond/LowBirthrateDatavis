@@ -49,7 +49,7 @@ function updateYear(selectedIndex) {
 function updateMap(selectedYear) {
     const yearData = populationData[selectedYear];
     
-    d3.json("data/skorea_provinces_geo.json").then(json => {
+    d3.json("./data/skorea_provinces_geo.json").then(json => {
         json.features.forEach(d => {
             const name = d.properties.name_eng.trim();
             const population = yearData[name];

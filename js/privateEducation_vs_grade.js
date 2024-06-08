@@ -1,7 +1,7 @@
 
 
 // Load the CSV data
-d3.csv("data/privateEducationVSgrade.csv").then(data => {
+d3.csv("./data/privateEducationVSgrade.csv").then(data => {
     showLineGraph(data);
 }).catch(error => {
     console.error("Error loading data:", error);

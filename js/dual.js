@@ -11,7 +11,7 @@ const svg = d3.select("#lineGraph").append("svg")
     .attr("transform", `translate(${margin.left},${margin.top})`);
 
 // Load and parse the CSV file
-d3.csv("data/dual_households.csv").then(data => {
+d3.csv("./data/dual_households.csv").then(data => {
     // Format the data
     const parseYear = d3.timeParse("%Y");
     data.forEach(d => {

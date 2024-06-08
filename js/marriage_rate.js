@@ -1,6 +1,6 @@
 // Load CSV data
-d3.csv("data/hs_marriagerate.csv").then(function(data) {
-    d3.csv("data/hs_birthrate.csv").then(function(data2) {
+d3.csv("./data/hs_marriagerate.csv").then(function(data) {
+    d3.csv("./data/hs_birthrate.csv").then(function(data2) {
         const regions = data.map(d => d['지 역']);
         const years = data.columns.slice(1);
         

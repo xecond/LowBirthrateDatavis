@@ -1,7 +1,7 @@
 // Load both CSV files
 Promise.all([
-    d3.csv("data/workhour.csv"),
-    d3.csv("data/birthrate1.csv")
+    d3.csv("./data/workhour.csv"),
+    d3.csv("./data/birthrate1.csv")
 ]).then(function(files) {
     let workhourData = files[0];
     let birthrateData = files[1];
