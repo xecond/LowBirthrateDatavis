@@ -6,8 +6,8 @@ const house_year_min = 2012;
 const backBtn = document.querySelector(".back");
 const nextBtn = document.querySelector(".next");
 
-d3.csv("/data/평균매매가격_종합.csv").then(function(data) {
-  d3.csv("/data/출생건수.csv").then(function(data2) {
+d3.csv("/data/hs_houseprice.csv").then(function(data) {
+  d3.csv("/data/hs_birth.csv").then(function(data2) {
     function next() {
         if (house_year < house_year_max) {
             house_year += 1;
